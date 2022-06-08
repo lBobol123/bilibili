@@ -1,0 +1,53 @@
+<template>
+  <div>
+    <button @click="add">添加</button>
+    <ul v-for="(item,index) in persons" :key="index">
+      <li>{{item.name}}--{{item.age}} <input type="text" /></li>
+    </ul>
+  </div>
+</template>
+
+  面试题：react、vue中的key有什么作用？（key的内部原理）
+    1.虚拟DOM中可以的作用：
+        key是虚拟DOM对象的标识，当数据发生变化时，Vue会根据【新数据】生成【新的虚拟DOM】,随后Vue进行【新虚拟DOM】与【旧虚拟DOM】的差异比较，比较规则如下：
+
+    2.对比规则：(文本节点，标签节点)
+        (1).旧虚拟DOM中找到了与新虚拟DOM相同的可以:
+            1.若虚拟DOM中内容没变，直接使用之前的真是DOM!
+            2.若虚拟DOM中内容变了，则生成新的真是DOM,随后替换掉页面中之前的真是DOM。
+
+        (2).旧虚拟DOM中未找到与新虚拟DOM相同的key:
+            创建新的真实DOM，随后渲染到页面。
+
+    3.用index作为key可能会引发的问题：
+        (1).若对赎金进行：逆序添加、逆序删除等破坏顺序操作：  会产生没有必要的真实DOM更新 ===> 界面效果没问题，但效率低。
+        (2).如果结构中还包含输入类的DOM:  会产生错误DOM更新 ===> 界面有问题
+
+    4.开发中如何选择key?
+        (1).最好使用每天数据的唯一标识作为key，比如id、手机号、身份证号、学号等唯一值。
+        (2).如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表用于展示，使用index作为key是没有问题的
+
+<script>
+export default {
+  components: {
+  },
+  data () {
+    return {
+      persons: [
+        { id: '001', name: '张三', age: 18 },
+        { id: '002', name: '李四', age: 19 },
+        { id: '003', name: '王五', age: 20 }
+      ]
+    }
+  },
+  methods: {
+    add () {
+      this.persons.unshift({ id: '004', name: '老刘', age: 21 })
+    }
+  }
+}
+
+</script>
+<style scoped>
+
+</style>

@@ -5,6 +5,7 @@
       <span v-if="isShowCode" :class="[{ phone_true: phoneRight }, 'code']" @click="codeClick">获取验证码</span>
       <span v-else class="code">已发送({{countDown}})s</span>
     </div>
+    <input type="text" :placeholder="idNumber">
   </div>
 </template>
 
@@ -16,8 +17,12 @@ export default {
     return {
       telephone: '',
       isShowCode: true,
-      countDown: 6
+      countDown: 6,
+      idNumber: ''
     }
+  },
+  created () {
+    this.hideNumber()
   },
   computed: {
     phoneRight () {
@@ -38,6 +43,13 @@ export default {
           this.countDown = 6
         }
       }, 1000)
+    },
+    hideNumber () {
+      const idNumber = '232103199510104011'
+      // const hideIdNumber = idNumber.split('').
+      // console.log(hideIdNumber)
+      const hideIdNumber = idNumber.replace(/(\d{3})\d{11}(\d{4})/g, '$1***********$2')
+      this.idNumber = hideIdNumber
     }
   }
 }

@@ -7,10 +7,15 @@
 </template>
 
 <style>
-  body {
-    padding: 0;
-    margin: 0;
-    background-color: #f4f4f4;
-    color: #323233
-  }
+body {
+  padding: 0;
+  margin: 0;
+  /* background-color: #f4f4f4; */
+  background-color: #ffffff;
+  color: #323233;
+  box-sizing: border-box;
+}
+#app {
+  height: 100vh;
+}
 </style>

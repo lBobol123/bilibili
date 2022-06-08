@@ -212,6 +212,30 @@
 export default {
   components: {
   },
+  // data () {
+  //   return {
+  //     scrollTop: 0,
+  //     showBackTop: false
+  //   }
+  // },
+  // mounted () {
+  //   window.addEventListener('scroll', this.handleScroll, true)
+  // },
+  // methods: {
+  //   handleScroll () {
+  //     this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
+  //     this.scrollTop >= 500 ? (this.showBackTop = true) : (this.showBackTop = false)
+  //   },
+  //   backtopClick () {
+  //     let top = document.documentElement.scrollTop + document.body.scrollTop
+  //     const timeTop = setInterval(() => {
+  //       document.documentElement.scrollTop = document.body.scrollTop = top -= 50
+  //       if (top <= 0) {
+  //         clearInterval(timeTop)
+  //       }
+  //   }, 5)
+  //   }
+  // }
   data () {
     return {
       scrollTop: 0,
@@ -219,22 +243,23 @@ export default {
     }
   },
   mounted () {
-    // window.addEventListener('scroll', this.handleScroll, true)
+    window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
-    // handleScroll () {
-    //   this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
-    //   this.scrollTop >= 500 ? (this.showBackTop = true) : (this.showBackTop = false)
-    // },
-    // backtopClick () {
-    //   let top = document.documentElement.scrollTop + document.body.scrollTop
-    //   const timeTop = setInterval(() => {
-    //     document.documentElement.scrollTop = document.body.scrollTop = top -= 50
-    //     if (top <= 0) {
-    //       clearInterval(timeTop)
-    //     }
-    // }, 5)
-    // }
+    handleScroll () {
+      this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
+      this.showBackTop = this.scrollTop >= 500
+    },
+    backtopClick () {
+      // let top = document.documentElement.scrollTop + document.body.scrollTop
+      const timer = setInterval(() => {
+        // document.documentElement.scrollTop = document.body.scrollTop = top -= 50
+        document.documentElement.scrollTop -= 50
+        if (this.scrollTop <= 0) {
+          clearInterval(timer)
+        }
+      }, 5)
+    }
   }
 }
 
@@ -248,6 +273,7 @@ export default {
   height: 35px;
   border-radius: 50%;
   background-color: pink;
+  opacity: .5;
 }
 .goback {
   position: fixed;

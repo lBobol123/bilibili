@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0bce37"],{"2a3e":function(e,n,t){"use strict";t.r(n);var u=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[t("ul",[t("li",[e._v("消息编码："+e._s(e.$route.query.id))]),t("li",[e._v("消息标题："+e._s(e.$route.query.title))])])])},r=[],c={name:"",components:{},data:function(){return{}}},i=c,o=t("2877"),a=Object(o["a"])(i,u,r,!1,null,"01f28e12",null);n["default"]=a.exports}}]);
+//# sourceMappingURL=chunk-2d0bce37.ef753969.js.map

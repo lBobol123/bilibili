@@ -2,10 +2,11 @@ import axios from 'axios'
 import Router from '@/router'
 import Vue from 'vue'
 
-const http = axios.create({
+export const http = axios.create({
   baseURL: 'http://112.74.99.5:3000/web/api',
   timeout: 5000
 })
+// console.log(process.env)
 
 http.interceptors.request.use(config => {
   if (localStorage.getItem('id') && localStorage.getItem('token')) {
@@ -28,4 +29,11 @@ http.interceptors.response.use(config => {
   return Promise.reject(err)
 })
 
-export default http
+// const httpNews = axios.create({
+
+// })
+
+export const newsHttp = axios.create({
+  baseURL: 'https://www.escook.cn',
+  timeout: 5000
+})
